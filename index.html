@@ -7,39 +7,93 @@
     <title>Word Guess Game</title>
 </head>
 <body>
-    
+   <p id = "wordGuess">
 
+   </p> 
+
+   <div class="container">Wrong Guess: <span id="wrongguess"></span></div> 
 
 
     <script type="text/javascript">
         
         // Make an array of games
+
+        var words = ["monopoly", "life", "operation "];
         // Computer randomly chooses Game
 
+        var word = words[Math.floor(Math.random() * words.length)];
 
-        var options = ["m", "o", "n", "o", "p", "o", "l", "y"];
+        var chosenWord = []
+        var answerArray = [];
+        var wrongGuesses = [];
+
+         for (var i=0; i < word.length; i++) {
+
+            chosenWord[i] = word[i] 
+            answerArray[i] = "_";
+         }
+
+         document.getElementById("wordGuess").innerHTML = answerArray
+
+        var remainingLetter = word.length;
 
         //User chooses a letter
-        document.onkeyup = function() {
+        document.onkeyup = function(event) {
+
             // Saving letter chosen to a variable
+            
             var userguess = String.fromCharCode(event.keyCode).
                 toLowerCase();
 
              console.log(userguess);
-
+             var founded = false
              //Make sure user guessed a letter
+              for ( var i=0; i < chosenWord.length; i++ ) {
+
+                if (userguess===chosenWord[i]) {
+                    answerArray[i] = userguess;
+                    founded = true;
+                    document.getElementById("wordGuess").innerHTML = answerArray
+
+                }
+              }
+                var alreadyGuessed = false
+
+               if (founded===false) {
+                for ( var i=0; i < wrongGuesses.length; i++ ) {
+
+                    if (userguess===wrongGuesses[i]) {
+                        alreadyGuessed = true;
+
+                    }
+                }
+
+
+            
+               if (alreadyGuessed){
+                   alert("Letter already guessed" + userguess);
+                   
+               }
+               else {
+                   wrongGuesses.push(userguess)
+                   document.getElementById("wrongguess").innerHTML = wrongGuesses
+               //    alert("Letter not in word" + userguess);
+               }
+            }
+            console.log(wrongGuesses);
 
              // Check if the letter is in the word
 
-             // Alert message to user if the letter is in the word 
+             // If the letter is in the word  then alert message to user if the letter is in the word 
 
-             // Record correct letter in the blank space
+              
+             // Then record correct letter in the blank space
 
-             // Alert message if the letter is not in the word
+             // If letter is not in the word alert the user
 
-             // Alert user if they already guessed that letter
+             // Alert user if they already guessed that letter and its not in the word
 
-             // 
+             // Repeat until the complete word has been guessed
 
 
 
