@@ -4,21 +4,34 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <title>Word Guess Game</title>
 </head>
 <body>
+     <div class="card text-center">
+         <div class="card-header">
+                </div>
+                    <div class="card-body">
+                      <h5 class="card-title">Board Games</h5>
+                 </div>
+            </div>
+    </div>
+    
    <p id = "wordGuess">
 
    </p> 
 
    <div class="container">Wrong Guess: <span id="wrongguess"></span></div> 
-
-
+   
+   <div class="container">
+        <!-- Content here -->
+      
+    
     <script type="text/javascript">
         
         // Make an array of games
 
-        var words = ["monopoly", "life", "operation "];
+        var words = ["monopoly", "life", "operation"];
         // Computer randomly chooses Game
 
         var word = words[Math.floor(Math.random() * words.length)];
@@ -26,13 +39,18 @@
         var chosenWord = []
         var answerArray = [];
         var wrongGuesses = [];
+        var resetGame = function() {
+            word = words[Math.floor(Math.random() * words.length)];
+            document.getElementById("wrongGuess").innerHTML = "";
+            document.getElementById("wordGuess").innerHTML = "";
+        }
 
          for (var i=0; i < word.length; i++) {
 
             chosenWord[i] = word[i] 
             answerArray[i] = "_";
          }
-
+        
          document.getElementById("wordGuess").innerHTML = answerArray
 
         var remainingLetter = word.length;
@@ -76,11 +94,16 @@
                }
                else {
                    wrongGuesses.push(userguess)
-                   document.getElementById("wrongguess").innerHTML = wrongGuesses
+                   document.getElementById("wrongGuess").innerHTML = wrongGuesses
                //    alert("Letter not in word" + userguess);
-               }
+             }
+            //  <img src="..." class="rounded float-right" alt="...">
+        
             }
             console.log(wrongGuesses);
+         
+            
+            
 
              // Check if the letter is in the word
 
@@ -101,6 +124,7 @@
         }
         
     </script>
+    </div>
     
 </body>
 </html>
